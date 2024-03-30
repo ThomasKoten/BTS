@@ -1,0 +1,22 @@
+alias: Ovládání žárovky dvojitým poklepáním
+description: Při dvojitém poklepání Aqara kostkou se změní stav žárovky.
+trigger:
+  - platform: device
+    domain: mqtt
+    device_id: 0caa9342321d17701b0d0fc6049e7837
+    type: action
+    subtype: tap
+condition: []
+action:
+  - service: light.toggle
+    entity_id: light.zarovicka
+  - condition: state
+    entity_id: light.zarovicka
+    state: "off"
+  - service: mqtt.publish
+    data:
+      retain: false
+      qos: "1"
+      payload: "{\"color\":{\"r\":255,\"g\":255,\"b\":255},\"brightness\":100}"
+      topic: zigbee2mqtt/Zarovicka/set
+mode: single
