@@ -1,0 +1,38 @@
+alias: Regulace světla podle okenního senzoru
+description: Snížení jasu žárovky pokud je otevřené okno, aby světlo nelákalo hmyz.
+trigger:
+  - platform: mqtt
+    topic: zigbee2mqtt/Dvere
+condition:
+  - condition: device
+    type: is_on
+    device_id: b6b40c6172817a483ee9d791c5bee191
+    entity_id: be3733e14d0361d3aa2ade9ce69fb5f3
+    domain: light
+action:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload_json.contact }}"
+        sequence:
+          - service: mqtt.publish
+            data:
+              retain: false
+              qos: "1"
+              payload_template: "{\"brightness\":{{ states('input_number.previous_brightness')}}}"
+              topic: zigbee2mqtt/Zarovicka/set
+      - conditions:
+          - condition: template
+            value_template: "{{ not trigger.payload_json.contact }}"
+        sequence:
+          - service: input_number.set_value
+            data_template:
+              entity_id: input_number.previous_brightness
+              value: "{{ state_attr('light.zarovicka', 'brightness') }}"
+          - service: mqtt.publish
+            data:
+              retain: false
+              qos: "1"
+              payload: "{\"brightness\": 10}"
+              topic: zigbee2mqtt/Zarovicka/set
+mode: single
