@@ -1,0 +1,28 @@
+alias: Změna barvy
+description: ""
+trigger:
+  - platform: mqtt
+    topic: zigbee2mqtt/Kosticka
+condition:
+  - condition: template
+    value_template: "{{ trigger.payload_json.action == 'flip90' }}"
+action:
+  - variables:
+      color_map: |
+        {{
+          {
+            0: "{\"color\":{\"r\":255,\"g\":255,\"b\":255}}",
+            1: "{\"color\":{\"r\":0,\"g\":255,\"b\":0}}",
+            2: "{\"color\":{\"r\":255,\"g\":0,\"b\":0}}",
+            3: "{\"color\":{\"r\":0,\"g\":0,\"b\":255}}",
+            4: "{\"color\":{\"r\":255,\"g\":128,\"b\":0}}",
+            5: "{\"color\":{\"r\":255,\"g\":0,\"b\":255}}"
+          }
+        }}
+  - service: mqtt.publish
+    data:
+      retain: false
+      qos: "1"
+      payload: "{{ color_map[trigger.payload_json.side] }}"
+      topic: zigbee2mqtt/Zarovicka/set
+mode: single
