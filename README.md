@@ -23,7 +23,9 @@ Pokud je okno znovu zavřeno hodnota jasu se vrátí na hodnotu před otevření
 
 ### Přepíná stavu žárovky dvojitým poklepáním kostkou
 Dvojitým poklepáním kostkou dojde k vypnutí/zapnutí žárovky. 
-Zároveň dojde k nastavení barvy a jasu na počáteční hodnoty. V tomto případě je to bílá barva a jas 127.
+Zároveň dojde k nastavení barvy a jasu na počáteční hodnoty. 
+> [!NOTE]
+> V tomto případě je to bílá barva `rgb(255, 255, 255)` a jas ```127```.
 
 ###  Korigování jasu žárovky pomocí otáčení kostkou
 Vodorovným otáčením kostky doprava se zvyšuje jas žárovky. 
