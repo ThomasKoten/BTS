@@ -18,22 +18,32 @@
 ### Nastavení jasu žárovky podle stavu okna
 Pokud je okno otevřeno sníží se jas žárovky, aby světlo nepřilákalo okolní hmyz.
 Pokud je okno znovu zavřeno hodnota jasu se vrátí na hodnotu před otevřením okna.
+
+![Okenní senzor](./Podklady/Window_sensor.gif)
 > [!IMPORTANT]
 >Jas se změní jen pokud žárovka svítí.
 
 ### Přepíná stavu žárovky dvojitým poklepáním kostkou
 Dvojitým poklepáním kostkou dojde k vypnutí/zapnutí žárovky. 
-Zároveň dojde k nastavení barvy a jasu na počáteční hodnoty. 
+Zároveň dojde k nastavení barvy a jasu na počáteční hodnoty.
+
+![Přepínání žárovky](./Podklady/Lightbulb_toggle.gif)
 > [!NOTE]
 > V tomto případě je to bílá barva `rgb(255, 255, 255)` a jas ```127```.
 
 ###  Korigování jasu žárovky pomocí otáčení kostkou
 Vodorovným otáčením kostky doprava se zvyšuje jas žárovky. 
 Vodorovným otáčením kostky doleva se snižuje jas žárovky.
+
+![Nastavení jasu](./Podklady/Brightness_rotate.gif)
 > [!IMPORTANT]
 >Žárovka musí svítit aby došlo ke změně jasu.
 
 ###  Změna barvy žárovky převracením kostky o 90°
 Převrácením kostky o 90° se změní barva žárovky.
 
+![Změna barvy](./Podklady/Color_flip.gif)
+
 Barva světla záleží na horní straně kostky po převrácení viz. diagram kostky.
+
+![Diagram kostky](./Podklady/Kosticka_diagram.jpg)
